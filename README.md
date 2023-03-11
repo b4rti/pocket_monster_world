@@ -54,7 +54,7 @@ cd dist/pocket_monster_world && ./pocket_monster_world
 
 ### Download the latest release
 
-[Release](https://github.com/b4rti/pokerpg/releases/latest)
+[Release](https://github.com/b4rti/pocket_monster_world/releases/latest)
 
 ### Warning !
 
