@@ -1,5 +1,5 @@
 # Pocket Monster World
-[![Build](https://github.com/b4rti/pokerpg/actions/workflows/package.yml/badge.svg)](https://github.com/b4rti/pokerpg/actions/workflows/package.yml)
+[![Build](https://github.com/b4rti/pocket_monster_world/actions/workflows/package.yml/badge.svg)](https://github.com/b4rti/pokerpg/actions/workflows/package.yml)
 
 Pocket Monster World is a Pokémon RPG game made in Python using the Pygame-CE library.
 
