@@ -1,0 +1,127 @@
+name: Python package
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          sudo apt update -y
+          sudo apt install -y libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libsdl2-gfx-dev
+          pip install poetry
+          poetry install
+
+      - name: Build PyInstaller from develop branch
+        run: |
+          git clone -b develop https://github.com/pyinstaller/pyinstaller.git
+          poetry run sh -c "cd pyinstaller && pip install ."
+
+      - name: Build package
+        run: |
+          poetry run build
+
+      - name: Release on GitHub
+        uses: softprops/action-gh-release@v1
+        if:
+        with:
+          files: pocket_monster_world-*.zip
+          tag_name: v0.1.0-${{ github.run_number }}
+          body: Release v0.1.0-${{ github.run_number }}
+          draft: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+
+
+  build-windows:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          pip install poetry
+          poetry install
+
+      - name: Build PyInstaller from develop branch
+        run: |
+          git clone -b develop https://github.com/pyinstaller/pyinstaller.git
+          poetry run cmd /c "cd pyinstaller && pip install ."
+
+      - name: Build package
+        run: |
+          poetry run build
+
+      - name: Release on GitHub
+        uses: softprops/action-gh-release@v1
+        if:
+        with:
+          files: pocket_monster_world-*.zip
+          tag_name: v0.1.0-${{ github.run_number }}
+          body: Release v0.1.0-${{ github.run_number }}
+          draft: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+
+
+  build-macos:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          pip install poetry
+          poetry install
+
+      - name: Build PyInstaller from develop branch
+        run: |
+          git clone -b develop https://github.com/pyinstaller/pyinstaller.git
+          poetry run sh -c "cd pyinstaller && pip install ."
+
+      - name: Build package
+        run: |
+          poetry run build
+
+      - name: Release on GitHub
+        uses: softprops/action-gh-release@v1
+        if:
+        with:
+          files: pocket_monster_world-*.zip
+          tag_name: v0.1.0-${{ github.run_number }}
+          body: Release v0.1.0-${{ github.run_number }}
+          draft: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+
