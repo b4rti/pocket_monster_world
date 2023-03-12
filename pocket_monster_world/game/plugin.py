@@ -43,7 +43,7 @@ class Plugin(metaclass=ABCMeta):
 
 class PluginManager:
 
-    def __init__(self, game: 'Game'):
+    def __init__(self, game):
         self.game = game
         self.plugins = []
 
