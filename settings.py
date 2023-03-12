@@ -5,10 +5,10 @@ import pygame as pg
 # Display  #
 # ======== #
 
-SCR_WIDTH       = 3440
-SCR_HEIGHT      = 1440
+SCR_WIDTH       = 800
+SCR_HEIGHT      = 600
 SCR_DEPTH       = 32
-SCR_FLAGS       = pg.DOUBLEBUF | pg.HWSURFACE | pg.NOFRAME
+SCR_FLAGS       = pg.DOUBLEBUF | pg.HWSURFACE # | pg.NOFRAME
 SCR_FPS         = 60
 
 

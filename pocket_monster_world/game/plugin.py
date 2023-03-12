@@ -9,7 +9,7 @@ class Plugin(metaclass=ABCMeta):
     description: str
     version: str
 
-    def __init__(self, game: 'Game'):
+    def __init__(self, game):
         self.game = game
 
     @abstractmethod

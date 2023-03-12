@@ -1,8 +1,10 @@
 name: Package
 
+
 on:
   push:
     branches: [ "main" ]
+
 
 env:
   PACKAGE_VERSION: 0.1.0

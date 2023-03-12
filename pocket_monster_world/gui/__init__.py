@@ -1,7 +1,7 @@
 
 
 class GuiManager:
-    def __init__(self, game: 'Game'):
+    def __init__(self, game):
         self.game = game
 
     def __getattr__(self, item):
