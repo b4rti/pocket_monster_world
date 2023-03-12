@@ -3,7 +3,6 @@ import settings
 import sys
 
 from pocket_monster_world.game.plugin import PluginManager
-from pocket_monster_world.gui import GuiManager
 from pocket_monster_world.state import GameStateManager
 
 
@@ -20,7 +19,6 @@ class Game:
         self.plugins = PluginManager(self)
         self.plugins.load_all()
         self.states = GameStateManager(self)
-        self.gui = GuiManager(self)
 
         self.screen = pygame.display.set_mode(
             (settings.SCR_WIDTH, settings.SCR_HEIGHT),
@@ -65,12 +63,10 @@ class Game:
 
         self.plugins.handle_input()
         self.states.handle_input()
-        self.gui.handle_input()
 
     def update(self):
         self.plugins.pre_update()
         self.states.update()
-        self.gui.update()
         self.plugins.post_update()
 
     def render(self):
@@ -78,7 +74,6 @@ class Game:
 
         self.plugins.pre_render()
         self.states.render()
-        self.gui.render()
         self.plugins.post_render()
 
         pygame.display.update()
