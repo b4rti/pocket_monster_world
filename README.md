@@ -1,6 +1,4 @@
-<div style="text-align:center">
-  <img src="https://raw.githubusercontent.com/b4rti/pocket_monster_world/main/assets/img/logo.png" alt="Logo" />
-</div>
+![Logo](/assets/img/logo.png)
 
 # Pocket Monster World
 [![Build](https://github.com/b4rti/pocket_monster_world/actions/workflows/package.yml/badge.svg)](https://github.com/b4rti/pocket_monster_world/actions/workflows/package.yml)
