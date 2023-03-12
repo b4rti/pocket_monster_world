@@ -9,7 +9,7 @@ from pocket_monster_world.state import GameState
 class MenuState(GameState):
     name = "menu"
 
-    def __init__(self, game: 'Game'):
+    def __init__(self, game):
         super().__init__(game)
         self.font = pygame.font.Font("assets/font/pokemon.ttf", 30)
 

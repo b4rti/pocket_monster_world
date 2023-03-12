@@ -4,7 +4,7 @@ from abc import ABCMeta, abstractmethod
 class GameState(metaclass=ABCMeta):
     name: str
 
-    def __init__(self, game: 'Game'):
+    def __init__(self, game):
         self.game = game
 
     @abstractmethod
@@ -37,7 +37,7 @@ class GameState(metaclass=ABCMeta):
 
 
 class GameStateManager:
-    def __init__(self, game: 'Game'):
+    def __init__(self, game):
         self.game = game
         self.states = []
 
