@@ -1,5 +1,5 @@
 from pocket_monster_world.game import Game
-from pocket_monster_world.state.intro import IntroState
+from pocket_monster_world.game_state.intro import IntroState
 
 
 def main():

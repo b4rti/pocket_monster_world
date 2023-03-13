@@ -62,7 +62,7 @@ cd dist/pocket_monster_world && ./pocket_monster_world
 Due to the use of PyInstaller to build the game executable and the fact that the game executable is not signed,
 it may be detected as a virus by some antivirus software.
 
-`Linux` should not be affected by this problem.
+`Linux` users should not be affected by this problem.
 
 `Windows` users can add an exception to their antivirus software or start the game directly from the source code.
 

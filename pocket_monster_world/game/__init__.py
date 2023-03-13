@@ -1,31 +1,34 @@
 import pygame
-import settings
+import config
 import sys
 
 from pocket_monster_world.game.plugin import PluginManager
-from pocket_monster_world.state import GameStateManager
+from pocket_monster_world.game_state import GameStateManager
 
 
 class Game:
     def __init__(self):
+        self.cfg = config
+        
         pygame.init()
         pygame.display.set_caption('Pocket Monster World')
+
         pygame.mixer.init()
         pygame.mixer.set_num_channels(32)
         for i in range(32):
-            pygame.mixer.Channel(i).set_volume(settings.SND_FX_VOL*settings.SND_MAIN_VOL)
-        pygame.mixer.music.set_volume(settings.SND_MUSIC_VOL*settings.SND_MAIN_VOL)
+            pygame.mixer.Channel(i).set_volume(self.cfg.SND_FX_VOL*self.cfg.SND_MAIN_VOL)
+        pygame.mixer.music.set_volume(self.cfg.SND_MUSIC_VOL*self.cfg.SND_MAIN_VOL)
 
         self.plugins = PluginManager(self)
         self.plugins.load_all()
         self.states = GameStateManager(self)
 
         self.screen = pygame.display.set_mode(
-            (settings.SCR_WIDTH, settings.SCR_HEIGHT),
-            settings.SCR_FLAGS,
-            settings.SCR_DEPTH)
+            (self.cfg.SCR_WIDTH, self.cfg.SCR_HEIGHT),
+            self.cfg.SCR_FLAGS,
+            self.cfg.SCR_DEPTH)
         self.clock = pygame.time.Clock()
-        self.fps: float = settings.SCR_FPS
+        self.fps: float = self.cfg.SCR_FPS
         self.dt: float = 0.0
 
         self.events: list[pygame.event.Event] = []
