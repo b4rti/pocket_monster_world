@@ -1,10 +1,11 @@
-import pygame
-from pygame_gui.elements import UIButton
+import sys
 
-import settings
+import pygame
 
 from pygame_gui import UIManager, UI_BUTTON_PRESSED
-from pocket_monster_world.state import GameState
+from pygame_gui.elements import UIButton
+
+from pocket_monster_world.game_state import GameState
 
 
 class MenuState(GameState):
@@ -12,21 +13,21 @@ class MenuState(GameState):
 
     def __init__(self, game):
         super().__init__(game)
-        self.gui = UIManager((settings.SCR_WIDTH, settings.SCR_HEIGHT))
+        self.gui = UIManager((self.game.cfg.SCR_WIDTH, self.game.cfg.SCR_HEIGHT))
         self.btn_new_game = UIButton(
-            relative_rect=pygame.Rect((settings.SCR_WIDTH / 2) - 100, (settings.SCR_HEIGHT / 2) - 250, 200, 50),
+            relative_rect=pygame.Rect((self.game.cfg.SCR_WIDTH / 2) - 100, (self.game.cfg.SCR_HEIGHT / 2) - 250, 200, 50),
             text="New Game",
             manager=self.gui)
         self.btn_load_game = UIButton(
-            relative_rect=pygame.Rect((settings.SCR_WIDTH / 2) - 100, (settings.SCR_HEIGHT / 2) - 150, 200, 50),
+            relative_rect=pygame.Rect((self.game.cfg.SCR_WIDTH / 2) - 100, (self.game.cfg.SCR_HEIGHT / 2) - 150, 200, 50),
             text="Load Game",
             manager=self.gui)
         self.btn_options = UIButton(
-            relative_rect=pygame.Rect((settings.SCR_WIDTH / 2) - 100, (settings.SCR_HEIGHT / 2) - 50, 200, 50),
+            relative_rect=pygame.Rect((self.game.cfg.SCR_WIDTH / 2) - 100, (self.game.cfg.SCR_HEIGHT / 2) - 50, 200, 50),
             text="Options",
             manager=self.gui)
         self.btn_quit = UIButton(
-            relative_rect=pygame.Rect((settings.SCR_WIDTH / 2) - 100, (settings.SCR_HEIGHT / 2) + 50, 200, 50),
+            relative_rect=pygame.Rect((self.game.cfg.SCR_WIDTH / 2) - 100, (self.game.cfg.SCR_HEIGHT / 2) + 50, 200, 50),
             text="Quit",
             manager=self.gui)
 
@@ -42,7 +43,7 @@ class MenuState(GameState):
                     print("Options")
                 elif event.ui_element == self.btn_quit:
                     pygame.quit()
-                    quit()
+                    sys.exit()
 
     def update(self):
         self.gui.update(self.game.dt)

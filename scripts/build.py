@@ -15,7 +15,7 @@ def run():
         'pyinstaller',
         '-n', 'pocket_monster_world',
         '--paths', 'pocket_monster_world',
-        '--add-data', f'settings.py{dir_sep}.',
+        '--add-data', f'config.py{dir_sep}.',
         '--add-data', f'plugins{dir_sep}plugins',
         '--noconfirm', '--windowed',
         os.path.join('pocket_monster_world', 'main.py')

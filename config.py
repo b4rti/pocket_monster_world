@@ -29,6 +29,6 @@ KB_BACK         = [pg.K_BACKSPACE, pg.K_ESCAPE]
 #  Sound   #
 # ======== #
 
-SND_MAIN_VOL    = 0.33
+SND_MAIN_VOL    = 0.5
 SND_FX_VOL      = 1.0
-SND_MUSIC_VOL   = 1.0
+SND_MUSIC_VOL   = 0.5
