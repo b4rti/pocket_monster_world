@@ -33,19 +33,27 @@ class UIPanel(metaclass=ABCMeta):
         self.elements = elements
 
     def handle_input(self):
-        if MouseButtons.LEFT in self.game.mouse_btn_up:
-            print("left click")
+        if self.visible:
             for element in self.elements if self.visible else []:
                 if element.rect.collidepoint(self.game.mouse_pos):
-                    element.on("click")
-        elif MouseButtons.RIGHT in self.game.mouse_btn_up:
-            for element in self.elements if self.visible else []:
-                if element.rect.collidepoint(self.game.mouse_pos):
-                    element.on("right_click")
-        elif MouseButtons.MIDDLE in self.game.mouse_btn_up:
-            for element in self.elements if self.visible else []:
-                if element.rect.collidepoint(self.game.mouse_pos):
-                    element.on("middle_click")
+                    element.on("hover")
+                else:
+                    element.on("unhover")
+
+            if MouseButtons.LEFT in self.game.mouse_btn_up:
+                for element in self.elements if self.visible else []:
+                    if element.rect.collidepoint(self.game.mouse_pos):
+                        element.on("click")
+
+            elif MouseButtons.RIGHT in self.game.mouse_btn_up:
+                for element in self.elements if self.visible else []:
+                    if element.rect.collidepoint(self.game.mouse_pos):
+                        element.on("right_click")
+
+            elif MouseButtons.MIDDLE in self.game.mouse_btn_up:
+                for element in self.elements if self.visible else []:
+                    if element.rect.collidepoint(self.game.mouse_pos):
+                        element.on("middle_click")
 
     def update(self):
         for element in self.elements if self.visible else []:

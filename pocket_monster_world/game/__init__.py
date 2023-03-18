@@ -1,7 +1,9 @@
-import pygame
 import config
+import pygame
 import sys
 
+from pygame import Clock, Surface, Font
+from pygame.display import set_mode
 from enum import IntEnum
 
 from pocket_monster_world.game.plugin import PluginManager
@@ -17,30 +19,33 @@ class MouseButtons(IntEnum):
 class Game:
     def __init__(self):
         self.cfg = config
-        
+
         pygame.init()
         pygame.display.set_caption('Pocket Monster World')
 
         pygame.mixer.init()
         pygame.mixer.set_num_channels(32)
         for i in range(32):
-            pygame.mixer.Channel(i).set_volume(self.cfg.SND_FX_VOL*self.cfg.SND_MAIN_VOL)
-        pygame.mixer.music.set_volume(self.cfg.SND_MUSIC_VOL*self.cfg.SND_MAIN_VOL)
+            pygame.mixer.Channel(i).set_volume(self.cfg.SND_FX_VOL * self.cfg.SND_MAIN_VOL)
+        pygame.mixer.music.set_volume(self.cfg.SND_MUSIC_VOL * self.cfg.SND_MAIN_VOL)
 
-        self.font = pygame.font.Font("assets/font/pokemon.ttf", 32)
+        self.font: Font = pygame.font.Font("assets/font/pokemon.ttf", 32)
 
-        self.plugins = PluginManager(self)
+        self.plugins: PluginManager = PluginManager(self)
         self.plugins.load_all()
-        self.states = GameStateManager(self)
+        self.states: GameStateManager = GameStateManager(self)
 
-        self.screen = pygame.display.set_mode((self.cfg.SCR_WIDTH, self.cfg.SCR_HEIGHT))
-        self.clock = pygame.time.Clock()
+        self.screen: Surface = set_mode((self.cfg.SCR_WIDTH, self.cfg.SCR_HEIGHT), self.cfg.SCR_FLAGS,
+                                        self.cfg.SCR_DEPTH)
+        self.clock: Clock = Clock()
         self.fps: float = self.cfg.SCR_FPS
         self.dt: float = 0.0
 
         self.events: list[pygame.event.Event] = []
+        self.keys: dict[int, bool] = {}
         self.keys_up: list[int] = []
         self.keys_down: list[int] = []
+        self.mouse_btn: list[bool, bool, bool] = []
         self.mouse_btn_up: list[bool, bool, bool] = []
         self.mouse_btn_down: list[bool, bool, bool] = []
         self.mouse_wheel: int = 0
@@ -56,8 +61,10 @@ class Game:
 
     def handle_input(self):
         self.events = pygame.event.get()
+        self.keys = pygame.key.get_pressed()
         self.keys_up = []
         self.keys_down = []
+        self.mouse_btn = pygame.mouse.get_pressed()
         self.mouse_btn_up = []
         self.mouse_btn_down = []
         self.mouse_wheel = 0
@@ -79,13 +86,11 @@ class Game:
                 pygame.quit()
                 sys.exit()
 
-        if MouseButtons.LEFT.value in self.mouse_btn_up:
-            self.mouse_btn_up[MouseButtons.LEFT.value - 1] = True
-
         self.plugins.handle_input()
         self.states.handle_input()
 
     def update(self):
+        pygame.display.set_caption(f'Pocket Monster World - FPS: {self.clock.get_fps():.1f}')
         self.plugins.pre_update()
         self.states.update()
         self.plugins.post_update()

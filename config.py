@@ -7,8 +7,9 @@ import pygame as pg
 
 SCR_WIDTH       = 800
 SCR_HEIGHT      = 600
+SCR_FLAGS       = 0  # pg.NOFRAME
 SCR_DEPTH       = 32
-SCR_FPS         = 60
+SCR_FPS         = -1
 
 
 # ======== #
@@ -28,6 +29,6 @@ KB_BACK         = [pg.K_BACKSPACE, pg.K_ESCAPE]
 #  Sound   #
 # ======== #
 
-SND_MAIN_VOL    = 0.1
+SND_MAIN_VOL    = 0.5
 SND_FX_VOL      = 1.0
 SND_MUSIC_VOL   = 0.5
