@@ -2,18 +2,11 @@ import config
 import pygame
 import sys
 
-from pygame import Clock, Surface, Font
+from pygame import Clock, Surface
 from pygame.display import set_mode
-from enum import IntEnum
 
 from pocket_monster_world.game.plugin import PluginManager
 from pocket_monster_world.game_state import GameStateManager
-
-
-class MouseButtons(IntEnum):
-    LEFT = 1
-    MIDDLE = 2
-    RIGHT = 3
 
 
 class Game:
@@ -28,8 +21,6 @@ class Game:
         for i in range(32):
             pygame.mixer.Channel(i).set_volume(self.cfg.SND_FX_VOL * self.cfg.SND_MAIN_VOL)
         pygame.mixer.music.set_volume(self.cfg.SND_MUSIC_VOL * self.cfg.SND_MAIN_VOL)
-
-        self.font: Font = pygame.font.Font("assets/font/pokemon.ttf", 32)
 
         self.plugins: PluginManager = PluginManager(self)
         self.plugins.load_all()

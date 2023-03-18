@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 from pygame import Surface, Rect
-from pocket_monster_world.game import MouseButtons
+from pocket_monster_world.game.enums import MouseButtons
 
 
 class UIElement(metaclass=ABCMeta):

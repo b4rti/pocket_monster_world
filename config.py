@@ -5,8 +5,8 @@ import pygame as pg
 # Display  #
 # ======== #
 
-SCR_WIDTH       = 800
-SCR_HEIGHT      = 600
+SCR_WIDTH       = 1280
+SCR_HEIGHT      = 720
 SCR_FLAGS       = 0  # pg.NOFRAME
 SCR_DEPTH       = 32
 SCR_FPS         = -1

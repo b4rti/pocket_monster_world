@@ -13,15 +13,15 @@ class MainMenuPanel(UIPanel):
     def __init__(self, game):
         new_game_btn = UIButton(game, True,
                                 Rect(game.screen.get_width() / 2 - 100, 100, 200, 40),
-                                {"click": lambda: print("New Game")}, "New Game")
+                                {"click": lambda: self._switch_panel(NewGamePanel(game))}, "New Game")
 
         load_game_btn = UIButton(game, True,
                                  Rect(game.screen.get_width() / 2 - 100, 150, 200, 40),
-                                 {"click": lambda: print("Load Game")}, "Load Game")
+                                 {"click": lambda: self._switch_panel(LoadGamePanel(game))}, "Load Game")
 
         options_btn = UIButton(game, True,
                                Rect(game.screen.get_width() / 2 - 100, 200, 200, 40),
-                               {"click": lambda: print("Options")}, "Options")
+                               {"click": lambda: self._switch_panel(OptionsPanel(game))}, "Options")
 
         quit_btn = UIButton(game, True,
                             Rect(game.screen.get_width() / 2 - 100, 250, 200, 40),
@@ -30,11 +30,18 @@ class MainMenuPanel(UIPanel):
         super().__init__(game, True, Rect(0, 0, game.cfg.SCR_WIDTH, game.cfg.SCR_HEIGHT),
                          [new_game_btn, load_game_btn, options_btn, quit_btn])
 
+    def _switch_panel(self, panel):
+        self.game.states["menu"].panel = panel
+
 
 class NewGamePanel(UIPanel):
 
     def __init__(self, game):
-        super().__init__(game, True, Rect(0, 0, game.cfg.SCR_WIDTH, game.cfg.SCR_HEIGHT), [])
+        start_btn = UIButton(game, True,
+                             Rect(game.screen.get_width() / 2 - 100, 100, 200, 40),
+                             {"click": lambda: print("Start")}, "Start")
+
+        super().__init__(game, True, Rect(0, 0, game.cfg.SCR_WIDTH, game.cfg.SCR_HEIGHT), [start_btn])
 
 
 class LoadGamePanel(UIPanel):
@@ -54,21 +61,20 @@ class MenuState(GameState):
 
     def __init__(self, game):
         super().__init__(game)
-        self.main_menu_panel = MainMenuPanel(game)
-        self.new_game_panel = NewGamePanel(game)
+        self.panel = MainMenuPanel(game)
 
     def handle_input(self):
-        self.main_menu_panel.handle_input()
+        self.panel.handle_input()
 
     def update(self):
-        self.main_menu_panel.update()
+        self.panel.update()
 
     def shadow_update(self):
         pass
 
     def render(self):
         self.game.screen.fill((255, 255, 255))
-        self.main_menu_panel.render()
+        self.panel.render()
 
     def shadow_render(self):
         pass
