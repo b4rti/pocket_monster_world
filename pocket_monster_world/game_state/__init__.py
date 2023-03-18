@@ -41,7 +41,7 @@ class GameStateManager:
         self.game = game
         self.states = []
 
-    def __getattr__(self, item):
+    def __getitem__(self, item):
         for state in self.states:
             if state.name == item:
                 return state
