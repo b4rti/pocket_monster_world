@@ -8,7 +8,6 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11.0"
 pygame-ce = "^2.1.4"
-pygame-gui = {git = "https://github.com/MyreMylar/pygame_gui", branch = "main"}
 numpy = "^1.24.2"
 
 [tool.poetry.scripts]

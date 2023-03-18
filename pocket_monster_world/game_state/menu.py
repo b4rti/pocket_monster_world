@@ -1,11 +1,21 @@
-import sys
-
 import pygame
-
-from pygame_gui import UIManager, UI_BUTTON_PRESSED
-from pygame_gui.elements import UIButton
+from pygame import Rect
 
 from pocket_monster_world.game_state import GameState
+from pocket_monster_world.gui import UIPanel
+from pocket_monster_world.gui.button import UIButton
+
+
+class MainMenuPanel(UIPanel):
+
+    def __init__(self, game):
+        # conter position of the button
+        button_pos = (game.screen.get_width() / 2 - 50, game.screen.get_height() / 2 - 25)
+        button = UIButton(game, True, Rect(button_pos[0], button_pos[1], 100, 50), {"click": self.on_click}, "Click Me")
+        super().__init__(game, True, Rect(0, 0, 800, 600), [button])
+
+    def on_click(self):
+        print("Clicked!")
 
 
 class MenuState(GameState):
@@ -13,46 +23,19 @@ class MenuState(GameState):
 
     def __init__(self, game):
         super().__init__(game)
-        self.gui = UIManager((self.game.cfg.SCR_WIDTH, self.game.cfg.SCR_HEIGHT))
-        self.btn_new_game = UIButton(
-            relative_rect=pygame.Rect((self.game.cfg.SCR_WIDTH / 2) - 100, (self.game.cfg.SCR_HEIGHT / 2) - 250, 200, 50),
-            text="New Game",
-            manager=self.gui)
-        self.btn_load_game = UIButton(
-            relative_rect=pygame.Rect((self.game.cfg.SCR_WIDTH / 2) - 100, (self.game.cfg.SCR_HEIGHT / 2) - 150, 200, 50),
-            text="Load Game",
-            manager=self.gui)
-        self.btn_options = UIButton(
-            relative_rect=pygame.Rect((self.game.cfg.SCR_WIDTH / 2) - 100, (self.game.cfg.SCR_HEIGHT / 2) - 50, 200, 50),
-            text="Options",
-            manager=self.gui)
-        self.btn_quit = UIButton(
-            relative_rect=pygame.Rect((self.game.cfg.SCR_WIDTH / 2) - 100, (self.game.cfg.SCR_HEIGHT / 2) + 50, 200, 50),
-            text="Quit",
-            manager=self.gui)
+        self.panel = MainMenuPanel(game)
 
     def handle_input(self):
-        for event in self.game.events:
-            self.gui.process_events(event)
-            if event.type == UI_BUTTON_PRESSED:
-                if event.ui_element == self.btn_new_game:
-                    print("New Game")
-                elif event.ui_element == self.btn_load_game:
-                    print("Load Game")
-                elif event.ui_element == self.btn_options:
-                    print("Options")
-                elif event.ui_element == self.btn_quit:
-                    pygame.quit()
-                    sys.exit()
+        self.panel.handle_input()
 
     def update(self):
-        self.gui.update(self.game.dt)
+        self.panel.update()
 
     def shadow_update(self):
         pass
 
     def render(self):
-        self.gui.draw_ui(self.game.screen)
+        self.panel.render()
 
     def shadow_render(self):
         pass

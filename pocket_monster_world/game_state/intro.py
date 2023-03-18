@@ -13,11 +13,10 @@ class IntroState(GameState):
         self.logo = pygame.transform.scale(self.logo, (700, 200))
         self.psyduck = pygame.image.load("assets/img/pokemon/psyduck/front_default.png")
         self.psyduck = pygame.transform.scale(self.psyduck, (400, 400))
-        self.font = pygame.font.Font("assets/font/pokemon.ttf", 32)
-        self.text = self.font.render("Press any key to continue...", False, (255, 255, 255))
+        self.text = self.game.font.render("Press any key to continue...", False, (255, 255, 255))
 
     def handle_input(self):
-        if len(self.game.keys_down) or any(self.game.mouse_btn):
+        if len(self.game.keys_down) or any(self.game.mouse_btn_up):
             self.game.states.change(MenuState(self.game))
 
     def update(self):
