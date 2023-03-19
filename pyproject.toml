@@ -10,7 +10,7 @@ python = "^3.11.0"
 pygame-ce = "^2.1.4"
 numpy = "^1.24.2"
 game = "^0.0.5"
-opensimplex = "^0.4.4"
+noise = "^1.2.2"
 
 [tool.poetry.scripts]
 fetch-rest = "scripts.fetch_rest:run"
