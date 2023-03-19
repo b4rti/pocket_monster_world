@@ -51,6 +51,21 @@ files = [
 ]
 
 [[package]]
+name = "opensimplex"
+version = "0.4.4"
+description = "OpenSimplex is a noise generation function like Perlin or Simplex noise, but better."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "opensimplex-0.4.4-py3-none-any.whl", hash = "sha256:bed2619fbaf006735f8d966adfd63b46b4a68596179f889eb7f686612d129c52"},
+    {file = "opensimplex-0.4.4.tar.gz", hash = "sha256:773807dcdb966f09ed151a4e9eb6d6a5f2aaabba2917ea488e32add31c18fb90"},
+]
+
+[package.dependencies]
+numpy = ">=1.22"
+
+[[package]]
 name = "pygame-ce"
 version = "2.1.4"
 description = "Python Game Development"
@@ -105,4 +120,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11.0"
-content-hash = "5473f951301377f45e26315b2929dcd2008716a8be29bf423482b7fe4639b575"
+content-hash = "e0635c7dbe3100f00c08d040de6f22a175ba9785595a512e202459c0ae8d1e30"

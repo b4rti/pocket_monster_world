@@ -4,6 +4,7 @@ import sys
 from pygame import Rect
 
 from pocket_monster_world.game_state import GameState
+from pocket_monster_world.game_state.world import WorldState
 from pocket_monster_world.gui import UIPanel
 from pocket_monster_world.gui.button import UIButton
 
@@ -12,19 +13,19 @@ class MainMenuPanel(UIPanel):
 
     def __init__(self, game):
         new_game_btn = UIButton(game, True,
-                                Rect(game.screen.get_width() / 2 - 100, 100, 200, 40),
+                                Rect(game.cfg.SCR_WIDTH / 2 - 50, 125, 100, 25),
                                 {"click": lambda: self._switch_panel(NewGamePanel(game))}, "New Game")
 
         load_game_btn = UIButton(game, True,
-                                 Rect(game.screen.get_width() / 2 - 100, 150, 200, 40),
+                                 Rect(game.cfg.SCR_WIDTH / 2 - 50, 155, 100, 25),
                                  {"click": lambda: self._switch_panel(LoadGamePanel(game))}, "Load Game")
 
         options_btn = UIButton(game, True,
-                               Rect(game.screen.get_width() / 2 - 100, 200, 200, 40),
+                               Rect(game.cfg.SCR_WIDTH / 2 - 50, 185, 100, 25),
                                {"click": lambda: self._switch_panel(OptionsPanel(game))}, "Options")
 
         quit_btn = UIButton(game, True,
-                            Rect(game.screen.get_width() / 2 - 100, 250, 200, 40),
+                            Rect(game.cfg.SCR_WIDTH / 2 - 50, 215, 100, 25),
                             {"click": lambda: sys.exit()}, "Quit")
 
         super().__init__(game, True, Rect(0, 0, game.cfg.SCR_WIDTH, game.cfg.SCR_HEIGHT),
@@ -38,8 +39,8 @@ class NewGamePanel(UIPanel):
 
     def __init__(self, game):
         start_btn = UIButton(game, True,
-                             Rect(game.screen.get_width() / 2 - 100, 100, 200, 40),
-                             {"click": lambda: print("Start")}, "Start")
+                             Rect(game.screen.get_width() / 2 - 50, 125, 100, 25),
+                             {"click": lambda: self.game.states.push(WorldState(self.game))}, "Start")
 
         super().__init__(game, True, Rect(0, 0, game.cfg.SCR_WIDTH, game.cfg.SCR_HEIGHT), [start_btn])
 

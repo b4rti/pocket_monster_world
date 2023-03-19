@@ -10,11 +10,11 @@ class IntroState(GameState):
 
     def __init__(self, game):
         super().__init__(game)
-        self.font: Font = pygame.font.Font("assets/font/pokemon.ttf", 32)
+        self.font: Font = pygame.font.Font("assets/font/pokemon.ttf", 24)
         self.logo: Surface = pygame.image.load("assets/img/logo.png").convert_alpha()
-        self.logo: Surface = pygame.transform.scale(self.logo, (700, 200))
+        self.logo: Surface = pygame.transform.scale(self.logo, (400, 100))
         self.psyduck: Surface = pygame.image.load("assets/img/pokemon/psyduck/front_default.png").convert_alpha()
-        self.psyduck: Surface = pygame.transform.scale(self.psyduck, (400, 400))
+        self.psyduck: Surface = pygame.transform.scale(self.psyduck, (350, 350))
         self.text: Surface = self.font.render("Press any key to continue...", False, (0, 0, 0))
 
     def handle_input(self):
@@ -29,12 +29,14 @@ class IntroState(GameState):
 
     def render(self):
         self.game.screen.fill((255, 255, 255))
-        self.game.screen.blit(self.logo, (self.game.cfg.SCR_WIDTH / 2 - self.logo.get_width() / 2, 50))
-        self.game.screen.blit(self.psyduck, (self.game.cfg.SCR_WIDTH / 2 - self.psyduck.get_width() / 2, 150))
+        logo_pos = (self.game.cfg.SCR_WIDTH / 2 - self.logo.get_width() / 2, self.game.cfg.SCR_HEIGHT / 10)
+        self.game.screen.blit(self.logo, logo_pos)
+        psyduck_pos = (self.game.cfg.SCR_WIDTH / 2 - self.psyduck.get_width() / 2, self.game.cfg.SCR_HEIGHT / 5)
+        self.game.screen.blit(self.psyduck, psyduck_pos)
 
+        text_pos = (self.game.cfg.SCR_WIDTH / 2 - self.text.get_width() / 2, self.game.cfg.SCR_HEIGHT / 4 * 3)
         if int(pygame.time.get_ticks() / 750) % 2 == 0:
-            self.game.screen.blit(self.text, (self.game.cfg.SCR_WIDTH / 2 - self.text.get_width() / 2,
-                                              self.game.cfg.SCR_HEIGHT - 250))
+            self.game.screen.blit(self.text, text_pos)
 
     def shadow_render(self):
         pass
