@@ -47,6 +47,8 @@ class GameStateManager:
                 return state
 
     def push(self, state: GameState):
+        if self.states:
+            self.states[-1].on_exit()
         self.states.append(state)
         self.states[-1].on_enter()
 
@@ -54,6 +56,8 @@ class GameStateManager:
         if self.states:
             self.states[-1].on_exit()
             self.states.pop()
+        if self.states:
+            self.states[-1].on_enter()
 
     def change(self, state: GameState):
         self.pop()

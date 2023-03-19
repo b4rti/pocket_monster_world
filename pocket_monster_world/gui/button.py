@@ -12,7 +12,7 @@ class UIButton(UIElement):
 
         super().__init__(game, visible, rect, actions)
 
-        self.font: Font = pygame.font.Font("assets/font/pokemon.ttf", 32)
+        self.font: Font = pygame.font.Font("assets/font/pokemon.ttf", 16)
         self.text: str = text
         self.bg_color: tuple[int, int, int] = (255, 255, 255)
         self.fg_color: tuple[int, int, int] = (0, 0, 0)
