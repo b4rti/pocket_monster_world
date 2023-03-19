@@ -13,6 +13,24 @@ files = [
 ]
 
 [[package]]
+name = "noise"
+version = "1.2.2"
+description = "Perlin noise for Python"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "noise-1.2.2-cp27-none-win32.whl", hash = "sha256:f7ef26a4c334224e7763e740fc945c26c0abf9ba51a19d4f5befa1d20d7da0b7"},
+    {file = "noise-1.2.2-cp27-none-win_amd64.whl", hash = "sha256:15582a58c9ee79b07436a1220bd6c4145266865262d1e6478d37a08b7d910da8"},
+    {file = "noise-1.2.2-cp33-none-win32.whl", hash = "sha256:93ac2977cf0e8f5cb90a2e828a5dfefc438bfb1fb8d7fd1ee305f05eadc8578e"},
+    {file = "noise-1.2.2-cp33-none-win_amd64.whl", hash = "sha256:20d1c89a2b8c3714abe5a5fa653b3ab9ab01aee1475993b8bdb9d5e26bc081cc"},
+    {file = "noise-1.2.2-cp34-none-win32.whl", hash = "sha256:f82933563ef89651865cc7cbfab11721a2229f5c6c8c009a041be4fb887949f2"},
+    {file = "noise-1.2.2-cp34-none-win_amd64.whl", hash = "sha256:065be3531a6b7a7dfcb6840646400a75e081511c524caa04feaea11e16e7ab24"},
+    {file = "noise-1.2.2.tar.gz", hash = "sha256:57a2797436574391ff63a111e852e53a4164ecd81ad23639641743cd1a209b65"},
+    {file = "noise-1.2.2.zip", hash = "sha256:36036cdaca131ddd2ab4397fba649af7f074ec08031e1e0a51031d0ae23b509a"},
+]
+
+[[package]]
 name = "numpy"
 version = "1.24.2"
 description = "Fundamental package for array computing in Python"
@@ -49,21 +67,6 @@ files = [
     {file = "numpy-1.24.2-pp38-pypy38_pp73-win_amd64.whl", hash = "sha256:150947adbdfeceec4e5926d956a06865c1c690f2fd902efede4ca6fe2e657c3f"},
     {file = "numpy-1.24.2.tar.gz", hash = "sha256:003a9f530e880cb2cd177cba1af7220b9aa42def9c4afc2a2fc3ee6be7eb2b22"},
 ]
-
-[[package]]
-name = "opensimplex"
-version = "0.4.4"
-description = "OpenSimplex is a noise generation function like Perlin or Simplex noise, but better."
-category = "main"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "opensimplex-0.4.4-py3-none-any.whl", hash = "sha256:bed2619fbaf006735f8d966adfd63b46b4a68596179f889eb7f686612d129c52"},
-    {file = "opensimplex-0.4.4.tar.gz", hash = "sha256:773807dcdb966f09ed151a4e9eb6d6a5f2aaabba2917ea488e32add31c18fb90"},
-]
-
-[package.dependencies]
-numpy = ">=1.22"
 
 [[package]]
 name = "pygame-ce"
@@ -120,4 +123,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11.0"
-content-hash = "e0635c7dbe3100f00c08d040de6f22a175ba9785595a512e202459c0ae8d1e30"
+content-hash = "12621416884fc14a0d9424238bb921e3cf73d5c3dfc4e943e819e41b764b6b88"
