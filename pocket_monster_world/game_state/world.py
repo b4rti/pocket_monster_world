@@ -186,7 +186,6 @@ class WorldState(GameState):
 
         for x in range(0, int(self.game.cfg.SCR_WIDTH / 16)):
             for y in range(0, int(self.game.cfg.SCR_HEIGHT / 16)):
-                print(noise_map[x][y])
                 if noise_map[x][y] > 0.1:
                     self.surface.blit(self.tiles["water1"], (x * 16, y * 16))
                 elif noise_map[x][y] > 0.0:
@@ -213,7 +212,8 @@ class WorldState(GameState):
         pass
 
     def on_enter(self):
-        pass
+        pygame.mixer.music.load("assets/midi/mus_rg_route1.mid")
+        pygame.mixer.music.play(-1, 0.0, 2500)
 
     def on_exit(self):
         pass

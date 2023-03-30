@@ -5,9 +5,9 @@ import pygame as pg
 # Display  #
 # ======== #
 
-SCR_WIDTH       = 3440 # 960
-SCR_HEIGHT      = 1440 # 540
-SCR_FLAGS       = pg.SCALED  # | pg.NOFRAME | pg.FULLSCREEN
+SCR_WIDTH       = 960
+SCR_HEIGHT      = 540
+SCR_FLAGS       = pg.SCALED | pg.NOFRAME | pg.FULLSCREEN
 SCR_DEPTH       = 32
 SCR_FPS         = -1
 
@@ -29,6 +29,6 @@ KB_BACK         = [pg.K_BACKSPACE, pg.K_ESCAPE]
 #  Sound   #
 # ======== #
 
-SND_MAIN_VOL    = 0.1
+SND_MAIN_VOL    = 0.5
 SND_FX_VOL      = 1.0
 SND_MUSIC_VOL   = 0.5
